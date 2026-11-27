@@ -1,120 +1,341 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ember Noir Perfumes - Welcome!!</title>
+<title>Ember Noir | Embrace the Dark</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  body {
-    background: #00ffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect width='10' height='10' fill='%23ff00ff'/%3E%3Crect x='10' y='10' width='10' height='10' fill='%23ffff00'/%3E%3C/svg%3E");
-    font-family: "Times New Roman", serif;
-    color: #000;
-    text-align: center;
-    margin: 0;
-    padding: 8px;
+  :root {
+    --bg: #070605;
+    --card: #0d0b09;
+    --gold: #c9a25e;
+    --gold-hi: #e6c27a;
+    --text: #f2ece0;
+    --mute: #a39a88;
+    --line: rgba(201,162,94,.28);
+    --serif: "Cormorant Garamond", "Times New Roman", serif;
+    --sans: "Jost", "Helvetica Neue", Arial, sans-serif;
   }
-  h1 {
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    font-size: 44px;
-    margin: 6px 0;
-    background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, violet);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    -webkit-text-stroke: 1px #000;
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; background: var(--bg); }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 300; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  button, input { font: inherit; color: inherit; }
+  svg { display: block; }
+  .gold { color: var(--gold-hi); }
+  .eyebrow { font-size: .72rem; letter-spacing: .5em; color: var(--gold); text-transform: uppercase; font-weight: 400; }
+  .btn {
+    display: inline-flex; align-items: center; gap: .8rem;
+    border: 1px solid var(--gold); color: var(--text); background: transparent;
+    padding: .85rem 1.6rem; font-size: .88rem; letter-spacing: .04em; cursor: pointer;
+    transition: background .6s ease, color .6s ease;
   }
-  .banner {
-    background: red; color: yellow; font-weight: bold; font-size: 20px;
-    border: 5px ridge gold; padding: 6px; margin-bottom: 8px;
+  .btn:hover { background: var(--gold); color: var(--bg); }
+  :focus-visible { outline: 1px solid var(--gold-hi); outline-offset: 4px; }
+
+  /* ---------- header ---------- */
+  header.top {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 20;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 22px 4vw;
   }
-  .blink { animation: blink 0.8s steps(1) infinite; }
-  @keyframes blink { 50% { visibility: hidden; } }
-  table.nav { width: 100%; border: 3px outset #888; background: #c0c0c0; margin-bottom: 10px; }
-  table.nav td { border: 2px inset #fff; padding: 4px; }
-  table.nav a { color: blue; font-size: 16px; }
-  .hero { border: 4px dashed #f0f; background: #ffff99; padding: 10px; margin-bottom: 10px; }
-  .bottle { font-size: 90px; line-height: 1; }
-  .stock { font-size: 11px; color: #555; }
-  .products { width: 100%; border: 6px double #000; background: #fff; margin-bottom: 10px; }
-  .products td { border: 1px solid #000; padding: 8px; vertical-align: top; width: 33%; }
-  .products h3 { font-family: Impact, sans-serif; color: #c00; font-size: 20px; margin: 4px 0; }
-  .price { font-size: 22px; color: green; font-weight: bold; }
-  button {
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-    background: lime; border: 4px outset #0a0; font-size: 15px;
-    padding: 6px 10px; cursor: pointer;
+  .logo { display: flex; flex-direction: column; align-items: center; gap: 2px; color: var(--gold); }
+  .logo svg { width: 30px; height: 38px; }
+  .logo span { font-family: var(--serif); font-size: 1.45rem; letter-spacing: .24em; padding-left: .24em; font-weight: 500; }
+  nav.main ul { display: flex; gap: 2.4rem; list-style: none; font-size: .95rem; }
+  nav.main a { padding-bottom: 8px; border-bottom: 1px solid transparent; transition: color .5s, border-color .5s; }
+  nav.main a:hover { color: var(--gold-hi); }
+  nav.main a.on { color: var(--gold-hi); border-color: var(--gold); }
+  .icons { display: flex; gap: 1.6rem; align-items: center; }
+  .icons button { background: none; border: 0; cursor: pointer; position: relative; display: grid; }
+  .icons svg { width: 24px; height: 24px; stroke: var(--text); fill: none; stroke-width: 1.4; }
+  .badge { position: absolute; top: -7px; right: -8px; background: var(--gold); color: #000; font-size: .6rem; font-weight: 500; width: 15px; height: 15px; border-radius: 50%; display: grid; place-items: center; }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; min-height: 640px; height: 100svh; max-height: 860px; overflow: hidden; display: flex; align-items: center; background: #050403; }
+  .hero-art, .hero img.photo { position: absolute; inset: 0; width: 100%; height: 100%; }
+  .hero img.photo { object-fit: cover; object-position: right center; z-index: 1; }
+  .hero-art { z-index: 0; }
+  .hero-art .smoke { animation: drift 22s ease-in-out infinite alternate; transform-origin: 70% 60%; }
+  @keyframes drift { from { transform: translate3d(-10px, 6px, 0) scale(1); } to { transform: translate3d(14px, -10px, 0) scale(1.06); } }
+  .hero::after { content: ""; position: absolute; inset: 0; z-index: 2; background: linear-gradient(90deg, rgba(5,4,3,.92) 0%, rgba(5,4,3,.55) 38%, transparent 62%); }
+  .hero-copy { position: relative; z-index: 3; padding: 120px 4vw 0 4vw; max-width: 760px; }
+  .hero-copy > * { opacity: 0; animation: rise 1.6s ease forwards; }
+  .hero-copy > :nth-child(1) { animation-delay: .3s; }
+  .hero-copy > :nth-child(2) { animation-delay: .8s; }
+  .hero-copy > :nth-child(3) { animation-delay: 1.5s; }
+  .hero-copy > :nth-child(4) { animation-delay: 2.1s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+  .hero h1 { font-family: var(--serif); font-weight: 500; font-variant: small-caps; font-size: clamp(3.6rem, 9vw, 6.6rem); letter-spacing: .03em; line-height: 1; margin: 1.1rem 0 1.4rem; }
+  .hero h1 em { font-style: normal; color: var(--gold-hi); }
+  .hero .tag { font-family: var(--serif); font-style: italic; font-size: clamp(1.7rem, 3.4vw, 2.4rem); line-height: 1.2; margin-bottom: 2.2rem; }
+  .hero .tag em { color: var(--gold-hi); }
+  .scroll-hint { position: absolute; left: 4vw; bottom: 32px; z-index: 3; display: flex; align-items: center; gap: .9rem; font-size: .72rem; color: var(--mute); }
+  .scroll-hint i { width: 22px; height: 36px; border: 1px solid var(--gold); border-radius: 12px; position: relative; }
+  .scroll-hint i::after { content: ""; position: absolute; left: 50%; top: 7px; width: 1px; height: 7px; background: var(--gold); animation: wheel 2s ease infinite; }
+  @keyframes wheel { 0% { opacity: 0; transform: translateY(0); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(10px); } }
+  .counter { position: absolute; right: 4vw; bottom: 32px; z-index: 3; display: flex; align-items: center; gap: 1rem; font-size: .85rem; }
+  .counter .bar { width: 36px; height: 1px; background: var(--gold); }
+  .counter button { width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--gold); background: transparent; color: var(--gold-hi); cursor: pointer; transition: background .5s, color .5s; }
+  .counter button:hover { background: var(--gold); color: #000; }
+
+  /* ---------- trust bar ---------- */
+  .trust { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #0a0806; }
+  .trust div { display: flex; align-items: center; justify-content: center; gap: 1rem; padding: 22px 12px; font-size: .78rem; }
+  .trust div + div { border-left: 1px solid var(--line); }
+  .trust svg { width: 34px; height: 34px; stroke: var(--gold); fill: none; stroke-width: 1.2; flex: none; }
+
+  /* ---------- collection ---------- */
+  .collection { padding: 56px 2vw 40px; text-align: center; }
+  .collection .eyebrow { display: flex; align-items: center; justify-content: center; gap: 1.6rem; }
+  .collection .eyebrow::before, .collection .eyebrow::after { content: ""; width: min(14vw, 160px); height: 1px; background: var(--line); }
+  .collection h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 5vw, 3.4rem); margin: .3rem 0 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; max-width: 1280px; margin: 0 auto; }
+  .card { background: radial-gradient(80% 60% at 50% 40%, #1a1510 0%, var(--card) 70%); border: 1px solid rgba(201,162,94,.14); border-radius: 6px; padding: 26px 18px 22px; transition: border-color .7s ease, transform .7s ease; }
+  .card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .card .art { position: relative; height: 200px; display: grid; place-items: center; margin-bottom: 18px; }
+  .card .art svg { height: 100%; width: auto; }
+  .card .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .card h3 { font-family: var(--sans); font-weight: 400; font-size: 1rem; }
+  .card .price { margin: 6px 0 16px; font-size: .95rem; color: var(--text); }
+  .card .btn { padding: .55rem 1.5rem; font-size: .82rem; }
+
+  /* ---------- story ---------- */
+  .story { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; min-height: 520px; margin-top: 20px; border-top: 1px solid var(--line); background: #060504; overflow: hidden; }
+  .story .pic { position: relative; min-height: 420px; background:
+      linear-gradient(90deg, transparent 80%, #060504),
+      repeating-linear-gradient(90deg, rgba(201,162,94,.16) 0 6px, transparent 6px 34px) left / 30% 100% no-repeat,
+      radial-gradient(60% 70% at 55% 55%, #3a2a1a, #0b0806 75%); }
+  .story .pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .story .pic::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 70%, #060504); }
+  .story .txt { display: flex; flex-direction: column; justify-content: center; padding: 48px 6vw 80px 3vw; z-index: 1; }
+  .story h2 { font-family: var(--serif); font-weight: 400; font-size: clamp(2.4rem, 4.6vw, 3.6rem); line-height: 1.1; margin: 1rem 0 1.4rem; }
+  .story h2 em { color: var(--gold-hi); }
+  .story p { max-width: 36ch; font-size: .98rem; margin-bottom: 1.8rem; }
+
+  /* ---------- newsletter ---------- */
+  .news { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 2rem; margin: -56px 1.2vw 0; padding: 26px 3vw; border: 1px solid var(--line); border-radius: 20px; background: rgba(8,6,4,.88); backdrop-filter: blur(6px); }
+  .news .lead { display: flex; align-items: center; gap: 1.6rem; }
+  .news .lead svg { width: 44px; height: 44px; stroke: var(--gold); fill: none; stroke-width: 1.2; flex: none; }
+  .news h3 { font-family: var(--serif); font-weight: 400; font-size: 1.9rem; line-height: 1.1; }
+  .news p { font-size: .92rem; }
+  .news form { display: flex; flex: 1; max-width: 560px; }
+  .news input { flex: 1; min-width: 0; background: rgba(0,0,0,.4); border: 1px solid var(--line); border-right: 0; padding: 0 1.2rem; height: 52px; font-size: .9rem; }
+  .news input::placeholder { color: var(--mute); }
+  .news button { height: 52px; padding: 0 2.2rem; border: 0; background: linear-gradient(135deg, #e6c27a, #b98f4a); color: #17110a; font-weight: 500; cursor: pointer; transition: filter .5s; }
+  .news button:hover { filter: brightness(1.12); }
+
+  /* ---------- footer ---------- */
+  footer { padding: 54px 4vw 26px; margin-top: 30px; border-top: 1px solid var(--line); }
+  .foot-row { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+  .foot-row ul { display: flex; gap: 2.4rem; list-style: none; font-size: .88rem; }
+  .foot-row ul a:hover { color: var(--gold-hi); }
+  .social { display: flex; gap: 1.4rem; }
+  .social svg { width: 22px; height: 22px; fill: var(--text); transition: fill .5s; }
+  .social a:hover svg { fill: var(--gold-hi); }
+  .legal { display: flex; justify-content: space-between; margin-top: 34px; padding-top: 20px; border-top: 1px solid rgba(201,162,94,.14); font-size: .78rem; color: var(--mute); }
+  .legal span { flex: 1; text-align: center; padding-left: 12%; }
+  .legal a { margin-left: .8rem; }
+
+  /* ---------- responsive ---------- */
+  .menu-btn { display: none !important; }
+  @media (max-width: 960px) {
+    nav.main { position: fixed; inset: 0; z-index: 30; background: rgba(5,4,3,.97); display: none; place-items: center; }
+    nav.main.open { display: grid; }
+    nav.main ul { flex-direction: column; align-items: center; gap: 2rem; font-size: 1.4rem; }
+    .menu-btn { display: grid !important; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .trust { grid-template-columns: repeat(2, 1fr); }
+    .trust div:nth-child(3) { border-left: 0; }
+    .trust div:nth-child(n+3) { border-top: 1px solid var(--line); }
+    .story { grid-template-columns: 1fr; }
+    .story .txt { padding: 30px 6vw 90px; }
+    .news { flex-direction: column; align-items: stretch; margin-top: -48px; }
+    .foot-row { flex-direction: column; }
+    .foot-row ul { gap: 1.4rem; flex-wrap: wrap; justify-content: center; }
+    .legal { flex-direction: column; align-items: center; gap: .6rem; }
+    .legal span { padding: 0; }
+    .hero::after { background: linear-gradient(180deg, rgba(5,4,3,.5), rgba(5,4,3,.9)); }
+    .hero-copy { padding-top: 110px; }
+    .hero img.photo { object-position: 70% center; }
   }
-  .about { background: #ffcccc; border: 3px groove #f00; padding: 10px; text-align: left; margin-bottom: 10px; }
-  .about p { font-size: 18px; }
-  .counter { background: #000; color: #0f0; font-family: "Courier New", monospace; display: inline-block; padding: 4px 8px; letter-spacing: 3px; }
-  footer { font-size: 12px; margin-top: 10px; }
-  footer a { color: #00f; }
+  @media (max-width: 520px) {
+    .logo span { font-size: 1.1rem; }
+    .icons { gap: 1.1rem; }
+    .grid { gap: 12px; }
+    .card { padding: 18px 10px 16px; }
+    .card .art { height: 150px; }
+    .trust div { flex-direction: column; text-align: center; gap: .5rem; }
+    .news .lead { flex-direction: column; text-align: center; }
+    .scroll-hint { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-copy > * { animation: none; opacity: 1; }
+    .hero-art .smoke, .scroll-hint i::after { animation: none; }
+    html { scroll-behavior: auto; }
+  }
 </style>
 </head>
 <body>
 
-<div class="banner"><marquee scrollamount="8">*** WELCOME TO OUR WEBSITE!!! *** BEST PERFUMES ONLINE *** BUY NOW *** FREE SHIPPING (MAYBE) ***</marquee></div>
+<!-- shared SVG parts -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="goldg" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f0d08a"/><stop offset="1" stop-color="#a47c3c"/></linearGradient>
+    <linearGradient id="shine" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".22"/><stop offset=".25" stop-color="#fff" stop-opacity="0"/><stop offset=".8" stop-color="#fff" stop-opacity=".05"/><stop offset="1" stop-color="#fff" stop-opacity=".16"/></linearGradient>
+    <symbol id="flame" viewBox="0 0 24 30"><path d="M12 1c1.2 5 7 8 7 15a7 7 0 0 1-14 0c0-3 1.5-5 3-6.5 0 2.5 1 4 2.500 4.500C9.500 9.500 10.500 5 12 1z" fill="none" stroke="url(#goldg)" stroke-width="1.5" stroke-linejoin="round"/><path d="M12 14c1 2 3 3 3 5.500a3 3 0 0 1-6 0c0-1.500 1-2.500 1.500-3.500.300 1 .800 1.500 1.500 1.500z" fill="url(#goldg)"/></symbol>
+    <symbol id="bottle" viewBox="0 0 100 150">
+      <rect x="33" y="4" width="34" height="32" rx="3" fill="#0e0e0e" stroke="#2a2218" stroke-width=".8"/>
+      <rect x="33" y="30" width="34" height="5" fill="url(#goldg)"/>
+      <rect x="41" y="36" width="18" height="14" fill="url(#goldg)"/>
+      <rect x="10" y="50" width="80" height="92" rx="3" fill="var(--glass)"/>
+      <rect x="10" y="50" width="80" height="92" rx="3" fill="url(#shine)"/>
+      <rect x="6" y="138" width="88" height="8" rx="2" fill="#000" opacity=".55"/>
+      <use href="#flame" x="42" y="82" width="16" height="20"/>
+      <text x="50" y="114" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="9" letter-spacing="1.500" fill="#d9b571">EMBER</text>
+      <text x="50" y="124" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="7" letter-spacing="1.500" fill="#d9b571">NOIR</text>
+    </symbol>
+  </defs>
+</svg>
 
-<h1>EMBER NOIR PERFUMES</h1>
-<p><span class="blink" style="color:red;font-size:22px;font-weight:bold;">NEW!!! NEW!!! NEW!!!</span></p>
+<header class="top">
+  <a class="logo" href="#top" aria-label="Ember Noir">
+    <svg><use href="#flame"/></svg>
+    <span>EMBER NOIR</span>
+  </a>
+  <nav class="main" id="nav">
+    <ul>
+      <li><a class="on" href="#top">Home</a></li>
+      <li><a href="#collection">Shop</a></li>
+      <li><a href="#story">About</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <div class="icons">
+    <button aria-label="Search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-5-5"/></svg></button>
+    <button aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="badge">0</span></button>
+    <button class="menu-btn" id="menu" aria-label="Menu"><svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg></button>
+  </div>
+</header>
 
-<table class="nav">
-  <tr>
-    <td><a href="#">Home</a></td>
-    <td><a href="#products">Our Perfumes</a></td>
-    <td><a href="#about">About Us</a></td>
-    <td><a href="#">Contact</a></td>
-  </tr>
-</table>
+<section class="hero" id="top">
+  <!-- Fallback artwork. Drop a real photo in img/hero.jpg and it covers this automatically. -->
+  <svg class="hero-art" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <filter id="blur"><feGaussianBlur stdDeviation="26"/></filter>
+      <radialGradient id="glow" cx=".62" cy=".5" r=".5"><stop offset="0" stop-color="#c9a25e" stop-opacity=".45"/><stop offset="1" stop-color="#c9a25e" stop-opacity="0"/></radialGradient>
+      <linearGradient id="rock" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#2b241c"/><stop offset="1" stop-color="#0a0806"/></linearGradient>
+    </defs>
+    <rect width="1440" height="800" fill="#050403"/>
+    <rect width="1440" height="800" fill="url(#glow)"/>
+    <g class="smoke" filter="url(#blur)" fill="#d8b676">
+      <path d="M760 520c-120-80 40-150-30-230s90-120 60-200c120 40 40 120 110 190s-20 120 40 240z" opacity=".35"/>
+      <path d="M1040 540c80-90-30-140 40-220s-60-110-20-190c-110 50-30 120-100 190s30 130-30 220z" opacity=".3"/>
+      <path d="M900 600c-60-120 60-170 0-260 90 30 120 110 60 180s0 60-60 80z" opacity=".25"/>
+    </g>
+    <path d="M610 800 L700 640 L820 620 L960 590 L1100 640 L1180 560 L1300 500 L1440 440 V800z" fill="url(#rock)"/>
+    <path d="M700 640 L820 620 L960 590 L1100 640" fill="none" stroke="#c9a25e" stroke-opacity=".35" stroke-width="2"/>
+    <g transform="translate(870 140) scale(3.1)" style="--glass:#0a0a0a"><use href="#bottle" width="100" height="150"/></g>
+  </svg>
+  <img class="photo" src="img/hero.jpg" alt="" onerror="this.remove()">
 
-<div class="hero">
-  <div class="bottle">🧴</div>
-  <p class="stock">(picture of perfume bottle)</p>
-  <h2 style="font-family:Comic Sans MS,cursive;color:purple;">Fragrance that stays with you.</h2>
-  <button>CLICK HERE TO SHOP!!!</button>
+  <div class="hero-copy">
+    <p class="eyebrow">Embrace the dark</p>
+    <h1>Ember <em>Noir</em></h1>
+    <p class="tag">More than a fragrance.<br>A <em>presence.</em></p>
+    <a class="btn" href="#collection">Explore Collection <span>&rarr;</span></a>
+  </div>
+
+  <div class="scroll-hint"><i></i><span>Scroll to discover</span></div>
+  <div class="counter">
+    <span id="cur">01</span><span>/ 03</span><span class="bar"></span>
+    <button id="prev" aria-label="Previous">&larr;</button>
+    <button id="next" aria-label="Next">&rarr;</button>
+  </div>
+</section>
+
+<div class="trust">
+  <div><svg viewBox="0 0 40 40"><path d="M8 14l5-7h14l5 7-12 19L8 14z"/><path d="M8 14h24M16 14l4 19 4-19M13 7l7 7 7-7"/></svg>Premium Quality</div>
+  <div><svg viewBox="0 0 40 40"><path d="M3 10h22v18H3zM25 16h8l4 5v7H25z"/><circle cx="11" cy="30" r="3"/><circle cx="31" cy="30" r="3"/></svg>Worldwide Shipping</div>
+  <div><svg viewBox="0 0 40 40"><path d="M20 4l14 5v10c0 9-6 15-14 18C12 34 6 28 6 19V9z"/><path d="M13 20l5 5 9-10"/></svg>Secure Payments</div>
+  <div><svg viewBox="0 0 40 40"><path d="M8 24v-4a12 12 0 0 1 24 0v4"/><rect x="5" y="22" width="6" height="10" rx="2"/><rect x="29" y="22" width="6" height="10" rx="2"/><path d="M32 32c0 4-4 5-9 5"/></svg>Dedicated Support</div>
 </div>
 
-<a id="products"></a>
-<table class="products">
-  <tr>
-    <td>
-      <div class="bottle" style="font-size:60px;">🧴</div>
-      <h3>No. 1 Smoked Oud</h3>
-      <p>Deep smoke, dark wood and a trace of leather.</p>
-      <div class="price">$120</div>
-      <button>ADD TO CART</button>
-    </td>
-    <td>
-      <div class="bottle" style="font-size:60px;">🧴</div>
-      <h3>No. 2 Amber Veil</h3>
-      <p>Warm amber, soft vanilla and white musk.</p>
-      <div class="price">$135</div>
-      <button>ADD TO CART</button>
-    </td>
-    <td>
-      <div class="bottle" style="font-size:60px;">🧴</div>
-      <h3>No. 3 Midnight Fig</h3>
-      <p>Green fig, cedar and a cool night air finish.</p>
-      <div class="price">$110</div>
-      <button>ADD TO CART</button>
-    </td>
-  </tr>
-</table>
+<section class="collection" id="collection">
+  <p class="eyebrow">Our Collection</p>
+  <h2>Find Your Scent</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#101010"><use href="#bottle"/></svg><img src="img/noir-essence.png" alt="" onerror="this.remove()"></div>
+      <h3>Noir Essence</h3><p class="price">&#8358;120,000</p><button class="btn">Add to Cart</button>
+    </article>
+    <article class="card">
+      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#5e0c18"><use href="#bottle"/></svg><img src="img/rogue-elixir.png" alt="" onerror="this.remove()"></div>
+      <h3>Rogue Elixir</h3><p class="price">&#8358;120,000</p><button class="btn">Add to Cart</button>
+    </article>
+    <article class="card">
+      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#a9701b"><use href="#bottle"/></svg><img src="img/golden-reserve.png" alt="" onerror="this.remove()"></div>
+      <h3>Golden Reserve</h3><p class="price">&#8358;120,000</p><button class="btn">Add to Cart</button>
+    </article>
+    <article class="card">
+      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#0d2a70"><use href="#bottle"/></svg><img src="img/midnight-pulse.png" alt="" onerror="this.remove()"></div>
+      <h3>Midnight Pulse</h3><p class="price">&#8358;120,000</p><button class="btn">Add to Cart</button>
+    </article>
+  </div>
+</section>
 
-<a id="about"></a>
-<div class="about">
-  <h2 style="text-align:center;font-family:Impact,sans-serif;color:blue;">ABOUT US</h2>
-  <p>Ember Noir makes perfumes in small batches. Every bottle is hand-finished and made to last all day and into the night. We use real ingredients and take our time.</p>
-</div>
+<section class="story" id="story">
+  <div class="pic"><img src="img/story.jpg" alt="" onerror="this.remove()"></div>
+  <div class="txt">
+    <p class="eyebrow">Our Story</p>
+    <h2>A Fragrance<br>Born from <em>Ambition</em></h2>
+    <p>At Ember Noir, we believe fragrance is more than a scent &mdash; it&rsquo;s a statement. A reflection of your boldness, your elegance, and your unique story.</p>
+    <div><a class="btn" href="#">Learn More <span>&rarr;</span></a></div>
+  </div>
+</section>
 
-<p>You are visitor number</p>
-<div class="counter">0 0 0 4 2 1 7</div>
-<p style="font-size:13px;">Best viewed in Internet Explorer 6 at 800x600</p>
+<section class="news">
+  <div class="lead">
+    <svg viewBox="0 0 44 44"><path d="M6 14l16-9 16 9v22H6z"/><path d="M6 14l16 12 16-12"/></svg>
+    <div><h3>Stay in the Know</h3><p>Get exclusive offers, new launches and more.</p></div>
+  </div>
+  <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='Subscribed'">
+    <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
+    <button type="submit">Subscribe</button>
+  </form>
+</section>
 
-<footer>
-  <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Sitemap</a><br>
-  &copy; Ember Noir Perfumes. All rights reserved.
+<footer id="contact">
+  <div class="foot-row">
+    <a class="logo" href="#top" aria-label="Ember Noir"><svg><use href="#flame"/></svg><span>EMBER NOIR</span></a>
+    <ul>
+      <li><a href="#top">Home</a></li><li><a href="#collection">Shop</a></li><li><a href="#story">About</a></li><li><a href="#">Journal</a></li><li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="social">
+      <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3zm5 3.500a4.500 4.500 0 1 1 0 9 4.500 4.500 0 0 1 0-9zm0 2a2.500 2.500 0 1 0 0 5 2.500 2.500 0 0 0 0-5zM17.500 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></svg></a>
+      <a href="#" aria-label="X"><svg viewBox="0 0 24 24"><path d="M17.800 3h3.100l-6.800 7.700L22 21h-6.200l-4.900-6.300L5.300 21H2.200l7.200-8.300L1.900 3h6.400l4.400 5.800L17.800 3zm-1.100 16.200h1.700L7.300 4.700H5.500l11.200 14.500z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22 8.200a3 3 0 0 0-2.100-2.100C18 5.600 12 5.600 12 5.600s-6 0-7.900.5A3 3 0 0 0 2 8.200C1.500 10 1.500 12 1.500 12s0 2 .5 3.800a3 3 0 0 0 2.100 2.100c1.900.5 7.900.5 7.900.5s6 0 7.900-.5a3 3 0 0 0 2.100-2.100c.5-1.800.5-3.800.5-3.800s0-2-.5-3.800zM10 15V9l5.200 3L10 15z"/></svg></a>
+      <a href="#" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.500 2h-3.200v13.300a2.800 2.800 0 1 1-2.800-2.800c.3 0 .6 0 .8.100V9.300a6 6 0 1 0 5.200 5.900V8.600a7 7 0 0 0 4 1.300V6.700a4 4 0 0 1-4-4.700z"/></svg></a>
+    </div>
+  </div>
+  <div class="legal">
+    <span>&copy; 2026 Ember Noir. All rights reserved.</span>
+    <div><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></div>
+  </div>
 </footer>
 
+<script>
+  var nav = document.getElementById('nav');
+  document.getElementById('menu').onclick = function(){ nav.classList.toggle('open'); };
+  nav.onclick = function(e){ if (e.target.tagName === 'A') nav.classList.remove('open'); };
+  var n = 1, cur = document.getElementById('cur');
+  function show(){ cur.textContent = '0' + n; }
+  document.getElementById('next').onclick = function(){ n = n % 3 + 1; show(); };
+  document.getElementById('prev').onclick = function(){ n = (n + 1) % 3 + 1; show(); };
+</script>
 </body>
 </html>
