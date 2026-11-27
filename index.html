@@ -98,7 +98,7 @@
   .card:hover { border-color: var(--gold); transform: translateY(-4px); }
   .card .art { position: relative; height: 200px; display: grid; place-items: center; margin-bottom: 18px; }
   .card .art svg { height: 100%; width: auto; }
-  .card .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .card .art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
   .card h3 { font-family: var(--sans); font-weight: 400; font-size: 1rem; }
   .card .price { margin: 6px 0 16px; font-size: .95rem; color: var(--text); }
   .card .btn { padding: .55rem 1.5rem; font-size: .82rem; }
@@ -270,19 +270,19 @@
   <h2>Find Your Scent</h2>
   <div class="grid">
     <article class="card">
-      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#101010"><use href="#bottle"/></svg><img src="noir-essence.png" alt="" onerror="this.remove()"></div>
+      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#101010"><use href="#bottle"/></svg><img src="noir-essence.png" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.remove()"></div>
       <h3>Noir Essence</h3><p class="price">&#8358;120,000</p><button class="btn">Add to Cart</button>
     </article>
     <article class="card">
-      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#5e0c18"><use href="#bottle"/></svg><img src="rogue-elixir.png" alt="" onerror="this.remove()"></div>
+      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#5e0c18"><use href="#bottle"/></svg><img src="rogue-elixir.png" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.remove()"></div>
       <h3>Rogue Elixir</h3><p class="price">&#8358;120,000</p><button class="btn">Add to Cart</button>
     </article>
     <article class="card">
-      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#a9701b"><use href="#bottle"/></svg><img src="golden-reserve.png" alt="" onerror="this.remove()"></div>
+      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#a9701b"><use href="#bottle"/></svg><img src="golden-reserve.png" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.remove()"></div>
       <h3>Golden Reserve</h3><p class="price">&#8358;120,000</p><button class="btn">Add to Cart</button>
     </article>
     <article class="card">
-      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#0d2a70"><use href="#bottle"/></svg><img src="midnight-pulse.png" alt="" onerror="this.remove()"></div>
+      <div class="art"><svg viewBox="0 0 100 150" style="--glass:#0d2a70"><use href="#bottle"/></svg><img src="midnight-pulse.png" alt="" onload="this.previousElementSibling.style.visibility='hidden'" onerror="this.remove()"></div>
       <h3>Midnight Pulse</h3><p class="price">&#8358;120,000</p><button class="btn">Add to Cart</button>
     </article>
   </div>
