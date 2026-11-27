@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Noir Perfumes - Welcome!!</title>
+<style>
+  body {
+    background: #00ffff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20'%3E%3Crect width='10' height='10' fill='%23ff00ff'/%3E%3Crect x='10' y='10' width='10' height='10' fill='%23ffff00'/%3E%3C/svg%3E");
+    font-family: "Times New Roman", serif;
+    color: #000;
+    text-align: center;
+    margin: 0;
+    padding: 8px;
+  }
+  h1 {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-size: 44px;
+    margin: 6px 0;
+    background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, violet);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-stroke: 1px #000;
+  }
+  .banner {
+    background: red; color: yellow; font-weight: bold; font-size: 20px;
+    border: 5px ridge gold; padding: 6px; margin-bottom: 8px;
+  }
+  .blink { animation: blink 0.8s steps(1) infinite; }
+  @keyframes blink { 50% { visibility: hidden; } }
+  table.nav { width: 100%; border: 3px outset #888; background: #c0c0c0; margin-bottom: 10px; }
+  table.nav td { border: 2px inset #fff; padding: 4px; }
+  table.nav a { color: blue; font-size: 16px; }
+  .hero { border: 4px dashed #f0f; background: #ffff99; padding: 10px; margin-bottom: 10px; }
+  .bottle { font-size: 90px; line-height: 1; }
+  .stock { font-size: 11px; color: #555; }
+  .products { width: 100%; border: 6px double #000; background: #fff; margin-bottom: 10px; }
+  .products td { border: 1px solid #000; padding: 8px; vertical-align: top; width: 33%; }
+  .products h3 { font-family: Impact, sans-serif; color: #c00; font-size: 20px; margin: 4px 0; }
+  .price { font-size: 22px; color: green; font-weight: bold; }
+  button {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    background: lime; border: 4px outset #0a0; font-size: 15px;
+    padding: 6px 10px; cursor: pointer;
+  }
+  .about { background: #ffcccc; border: 3px groove #f00; padding: 10px; text-align: left; margin-bottom: 10px; }
+  .about p { font-size: 18px; }
+  .counter { background: #000; color: #0f0; font-family: "Courier New", monospace; display: inline-block; padding: 4px 8px; letter-spacing: 3px; }
+  footer { font-size: 12px; margin-top: 10px; }
+  footer a { color: #00f; }
+</style>
+</head>
+<body>
+
+<div class="banner"><marquee scrollamount="8">*** WELCOME TO OUR WEBSITE!!! *** BEST PERFUMES ONLINE *** BUY NOW *** FREE SHIPPING (MAYBE) ***</marquee></div>
+
+<h1>EMBER NOIR PERFUMES</h1>
+<p><span class="blink" style="color:red;font-size:22px;font-weight:bold;">NEW!!! NEW!!! NEW!!!</span></p>
+
+<table class="nav">
+  <tr>
+    <td><a href="#">Home</a></td>
+    <td><a href="#products">Our Perfumes</a></td>
+    <td><a href="#about">About Us</a></td>
+    <td><a href="#">Contact</a></td>
+  </tr>
+</table>
+
+<div class="hero">
+  <div class="bottle">🧴</div>
+  <p class="stock">(picture of perfume bottle)</p>
+  <h2 style="font-family:Comic Sans MS,cursive;color:purple;">Fragrance that stays with you.</h2>
+  <button>CLICK HERE TO SHOP!!!</button>
+</div>
+
+<a id="products"></a>
+<table class="products">
+  <tr>
+    <td>
+      <div class="bottle" style="font-size:60px;">🧴</div>
+      <h3>No. 1 Smoked Oud</h3>
+      <p>Deep smoke, dark wood and a trace of leather.</p>
+      <div class="price">$120</div>
+      <button>ADD TO CART</button>
+    </td>
+    <td>
+      <div class="bottle" style="font-size:60px;">🧴</div>
+      <h3>No. 2 Amber Veil</h3>
+      <p>Warm amber, soft vanilla and white musk.</p>
+      <div class="price">$135</div>
+      <button>ADD TO CART</button>
+    </td>
+    <td>
+      <div class="bottle" style="font-size:60px;">🧴</div>
+      <h3>No. 3 Midnight Fig</h3>
+      <p>Green fig, cedar and a cool night air finish.</p>
+      <div class="price">$110</div>
+      <button>ADD TO CART</button>
+    </td>
+  </tr>
+</table>
+
+<a id="about"></a>
+<div class="about">
+  <h2 style="text-align:center;font-family:Impact,sans-serif;color:blue;">ABOUT US</h2>
+  <p>Ember Noir makes perfumes in small batches. Every bottle is hand-finished and made to last all day and into the night. We use real ingredients and take our time.</p>
+</div>
+
+<p>You are visitor number</p>
+<div class="counter">0 0 0 4 2 1 7</div>
+<p style="font-size:13px;">Best viewed in Internet Explorer 6 at 800x600</p>
+
+<footer>
+  <a href="#">Privacy</a> | <a href="#">Terms</a> | <a href="#">Sitemap</a><br>
+  &copy; Ember Noir Perfumes. All rights reserved.
+</footer>
+
+</body>
+</html>
